@@ -19,7 +19,7 @@ app.get('/', function (req, res) {
 //   res.send('Error, wrong validation token');
 // })
 
-request('http://www.google.com', function (error, response, body) {
+request('https://chepoxholserver.herokuapp.com/facesent?sent=positive', function (error, response, body) {
   if (!error && response.statusCode == 200) {
     console.log(body) // Show the HTML for the Google homepage.
   }
@@ -54,8 +54,13 @@ app.post('/webhook/', jsonParser,  function (req, res) {
     sender = event.sender.id;
     if (event.message && event.message.text) {
       text = event.message.text;
+      var urlReq = 'https://chepoxholserver.herokuapp.com/api?texto='+text
       	console.log(event.message.text)
-        sendTextMessage(sender, "Welcome to this new bot");
+      	request(urlReq, function (error, response, body) {
+      		sendTextMessage(sender, body);
+		    console.log(body)   
+		})
+        
         continue;
       }
       // Handle a text message from this sender
