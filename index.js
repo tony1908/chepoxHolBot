@@ -57,7 +57,8 @@ app.post('/webhook/', jsonParser,  function (req, res) {
       var urlReq = 'https://chepoxholserver.herokuapp.com/api?texto='+text
       	console.log(event.message.text)
       	request(urlReq, function (error, response, body) {
-      		sendTextMessage(sender, body);
+      		body = JSON.parse(body);
+      		sendTextMessage(sender, body.sent);
 		    console.log(body.sent)   
 		})
         
