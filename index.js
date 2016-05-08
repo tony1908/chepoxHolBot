@@ -32,7 +32,6 @@ app.post('/webhook/', jsonParser,  function (req, res) {
         continue;
       }
       // Handle a text message from this sender
-    }
   }
   res.sendStatus(200);
 });
