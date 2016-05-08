@@ -58,7 +58,7 @@ app.post('/webhook/', jsonParser,  function (req, res) {
       	console.log(event.message.text)
       	request(urlReq, function (error, response, body) {
       		sendTextMessage(sender, body);
-		    console.log(body)   
+		    console.log(body.sent)   
 		})
         
         continue;
